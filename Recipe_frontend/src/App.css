@@ -1,0 +1,29 @@
+.recipe-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 1rem !important;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.carousel-caption {
+  bottom: 3rem;
+}
+
+.hero-slider-container .carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
