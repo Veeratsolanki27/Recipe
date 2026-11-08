@@ -1,0 +1,10 @@
+[build]
+  base = "Recipe_frontend"
+  publish = "Recipe_frontend/dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
