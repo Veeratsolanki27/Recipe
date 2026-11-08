@@ -2,7 +2,7 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy pom.xml and download dependencies first for caching
+# Copy pom.xml and download dependencies
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 
@@ -17,10 +17,8 @@ WORKDIR /app
 # Copy the built JAR from the builder stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose Render default port (Render provides PORT environment variable)
-ENV PORT=8080
-EXPOSE 8080
+ENV PORT=10000
+EXPOSE 10000
 
-# Run the Spring Boot app
-ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar app.jar"]
-
+# Bind to 0.0.0.0 so Render port scanner can reach Tomcat
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-10000} -Dserver.address=0.0.0.0 -jar app.jar"]

@@ -16,8 +16,8 @@ WORKDIR /app
 # Copy the built JAR from the builder stage
 COPY --from=build /app/target/*.jar app.jar
 
-ENV PORT=8080
-EXPOSE 8080
+ENV PORT=10000
+EXPOSE 10000
 
-ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar app.jar"]
-
+# Bind to 0.0.0.0 and port 10000/PORT so Render port scanner detects it
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-10000} -Dserver.address=0.0.0.0 -jar app.jar"]
