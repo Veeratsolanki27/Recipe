@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// Automatically use VITE_API_BASE_URL if configured, otherwise fallback to localhost:8080
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
 export const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL,
 });
 
 // Request interceptor to attach JWT token
